@@ -65,7 +65,7 @@ public class AppController {
     private static List<Article> generateMockList(){
         List<Article> articles = new ArrayList<>();
 
-        Article article1 = new Article("New York Times", "Eric Adams, a Bitcoin Booster, Is Taking First Paycheck in Crypto","hier", "haha", "aa", "28.04", "articles");
+        Article article1 = new Article("New York Times", "Eric Adams, a Bitcoin Booster, Is Taking First Paycheck in Crypto","da", "haha", "aa", "28.04", "articles");
        // Article article2 = new Article("News Sky", "Irishman held against his will in China for 3 years reunited with 'unbelievably happy' family");
         //Article article3 = new Article("News Sky", "Mother who won £127,000 tells how she still ended up homeless");
 
