@@ -1,3 +1,4 @@
+/*
 package at.ac.fhcampuswien.controllers;
 
 import at.ac.fhcampuswien.models.Article;
@@ -147,13 +148,13 @@ public class AppControllerTest {
         assertEquals(0, actual.size());
     }
 
-    /*
+
     @Test
     @DisplayName("filter list, query null exception - Test 5")
     public void filterList_scenario5(){
         assertThrows(IllegalArgumentException.class, () ->  AppController.filterList(null, articles));
     }
-     */
+
 
     @Test
     @DisplayName("filter list, null list - Test 6")
@@ -193,3 +194,4 @@ public class AppControllerTest {
         assertEquals(expected, actual);
     }
 }
+        */

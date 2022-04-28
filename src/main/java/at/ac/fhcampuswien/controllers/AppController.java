@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.controllers;
 
 import at.ac.fhcampuswien.models.Article;
 
+import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -64,13 +65,13 @@ public class AppController {
     private static List<Article> generateMockList(){
         List<Article> articles = new ArrayList<>();
 
-        Article article1 = new Article("New York Times", "Eric Adams, a Bitcoin Booster, Is Taking First Paycheck in Crypto");
-        Article article2 = new Article("News Sky", "Irishman held against his will in China for 3 years reunited with 'unbelievably happy' family");
-        Article article3 = new Article("News Sky", "Mother who won £127,000 tells how she still ended up homeless");
+        Article article1 = new Article("New York Times", "Eric Adams, a Bitcoin Booster, Is Taking First Paycheck in Crypto","hier", "haha", "aa", "28.04", "articles");
+       // Article article2 = new Article("News Sky", "Irishman held against his will in China for 3 years reunited with 'unbelievably happy' family");
+        //Article article3 = new Article("News Sky", "Mother who won £127,000 tells how she still ended up homeless");
 
         articles.add(article1);
-        articles.add(article2);
-        articles.add(article3);
+        //articles.add(article2);
+        //articles.add(article3);
 
         return articles;
     }
