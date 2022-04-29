@@ -6,7 +6,6 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.intellij.lang.annotations.Language;
 
 public class NewsApi {
     private static final String apiKey ="2a096bd8d7cc4bc194d33596a9d31cfd";
