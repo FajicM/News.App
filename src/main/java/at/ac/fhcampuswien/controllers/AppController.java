@@ -1,6 +1,9 @@
 package at.ac.fhcampuswien.controllers;
 
+import at.ac.fhcampuswien.NewsApi;
+import at.ac.fhcampuswien.Response.NewsResponse;
 import at.ac.fhcampuswien.models.Article;
+import org.intellij.lang.annotations.Language;
 
 import javax.xml.transform.Source;
 import java.util.ArrayList;
@@ -8,10 +11,11 @@ import java.util.List;
 import java.util.Locale;
 
 public class AppController {
+    String query;
     private List<Article> articles;
 
     public AppController() {
-        articles = generateMockList();
+        //articles = generateMockList();
     }
 
     public void setArticles(List<Article> articles){
@@ -40,10 +44,12 @@ public class AppController {
      * @return article list
      */
     public List<Article> getTopHeadlinesAustria() {
-        if(articles != null){
-            return articles;
+        NewsResponse newsResponse = NewsApi.getInstance().getTopHeadlines("AT", NewsApi.Category.general, NewsApi.Country.at);
+        if (newsResponse == null) {
+            return new ArrayList<>();
+        }else  {
+            return newsResponse.getArticles();
         }
-        return new ArrayList<>();
     }
 
     /**
@@ -52,16 +58,21 @@ public class AppController {
      * @return filtered list
      */
     public List<Article> getAllNewsBitcoin() {
-        if(articles != null) {
-            return filterList("bitcoin", articles);
+        NewsResponse newsResponse = NewsApi.getInstance().getAllNews("bitcoin", NewsApi.Language.de, NewsApi.SortBy.relevancy);
+
+        if (newsResponse == null) {
+            return new ArrayList<>();
+        }else {
+            return newsResponse.getArticles();
         }
-        return new ArrayList<>();
     }
+
 
     /**
      * method to generate a mocking list of articles
      * @return list of generated articles
      */
+    /*
     private static List<Article> generateMockList(){
         List<Article> articles = new ArrayList<>();
 
@@ -75,13 +86,16 @@ public class AppController {
 
         return articles;
     }
+     */
 
+    /*
     /**
      * filters a given article list based on a query
      * @param query to filter by
      * @param articles  list to filter
      * @return filtered list
-     */
+
+
     protected static List<Article> filterList(String query, List<Article> articles){
         if(query != null && articles != null) {
             List<Article> filtered = new ArrayList<>();
@@ -96,4 +110,5 @@ public class AppController {
             //throw new IllegalArgumentException();
         }
     }
+    */
 }
