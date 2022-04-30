@@ -43,6 +43,10 @@ public class AppController {
      * not implemented yet
      * @return article list
      */
+
+    // GetTopHeadlines Methode aus NewsApi wird gerufen wo die URL gebaut wird.
+    // Es wird überprüft ob es zu einer Antwort von NewsResponse kommt, wenn
+    // nicht wird eine leere Liste zurückgeliefert, wenn schon werden die Artikel zurpckgegeben.
     public List<Article> getTopHeadlinesAustria() {
         NewsResponse newsResponse = NewsApi.getInstance().getTopHeadlines("AT", NewsApi.Category.general, NewsApi.Country.at);
         if (newsResponse == null) {

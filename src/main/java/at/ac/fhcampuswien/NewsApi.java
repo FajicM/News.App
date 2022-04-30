@@ -12,6 +12,7 @@ public class NewsApi {
     private static final String url = "https://newsapi.org/v2";
     private static NewsApi instance;
     private OkHttpClient client;
+    // Enums -> used in AppController
     public enum Language {ar, de, en, es, fr, he, it, nl, no, pt, ru, se, ud, zh}
     public enum Category {business, entertainment, general, health, science, sports, technology}
     public enum Country {ae, ar, at, au, be, bg, br, ca, ch, cn, co, cu, cz, de, eg, fr, gb, gr,
@@ -19,11 +20,12 @@ public class NewsApi {
         sa, se, sg, si, sk, th, tr, tw, ua, us, ve, za }
     public enum SortBy {relevancy, popularity, publishedAt}
 
-
+    // Für die Vereinfachung, da immer die selbe Instanz verwendet wird.
     private NewsApi() {
         client = new OkHttpClient();
     }
 
+    // getInstance damit wir die nicht statischen Klassen in AppController verwenden können. (GetTopHeadlines/AllNews)
     public static NewsApi getInstance() {
         if (instance == null) {
             instance = new NewsApi();
@@ -31,6 +33,8 @@ public class NewsApi {
         return instance;
     }
 
+    // https://www.tabnine.com/code/query/okhttp3@HttpUrl$Builder+okhttp3@Request$Builder+okhttp3@Call || last visit: 28.04.2022
+    // https://codedaily.in/okhttp-tutorial-example/ || last visit: 29.04.2022
     private NewsResponse request(HttpUrl.Builder urlBuilder) {
         urlBuilder.addQueryParameter("apiKey", apiKey);
 
@@ -46,6 +50,7 @@ public class NewsApi {
             return null;
         }
     }
+    // https://square.github.io/okhttp/3.x/okhttp/okhttp3/HttpUrl.Builder.html || last visit 28.04.2022
     public NewsResponse getTopHeadlines(String country, Category category, Country choice) {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
         urlBuilder.addEncodedPathSegment("top-headlines");
@@ -67,12 +72,6 @@ public class NewsApi {
 
         return request(urlBuilder);
     }
-
-
-
-
-
-
 
 
 }
