@@ -1,6 +1,6 @@
 package at.ac.fhcampuswien;
 
-import at.ac.fhcampuswien.Response.NewsResponse;
+import at.ac.fhcampuswien.models.NewsResponse;
 import com.google.gson.Gson;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -20,18 +20,22 @@ public class NewsApi {
         sa, se, sg, si, sk, th, tr, tw, ua, us, ve, za }
     public enum SortBy {relevancy, popularity, publishedAt}
 
-    // Für die Vereinfachung, da immer die selbe Instanz verwendet wird.
+
+    // Client wird im Konstruktor initialisiert für globale Nutzung
     private NewsApi() {
         client = new OkHttpClient();
     }
 
+
     // getInstance damit wir die nicht statischen Klassen in AppController verwenden können. (GetTopHeadlines/AllNews)
+    // Singleton: es wird immer die selbe Instanz verwenndet
     public static NewsApi getInstance() {
         if (instance == null) {
             instance = new NewsApi();
         }
         return instance;
     }
+
 
     // https://www.tabnine.com/code/query/okhttp3@HttpUrl$Builder+okhttp3@Request$Builder+okhttp3@Call || last visit: 28.04.2022
     // https://codedaily.in/okhttp-tutorial-example/ || last visit: 29.04.2022
@@ -41,15 +45,16 @@ public class NewsApi {
         Request request = new Request.Builder().url(urlBuilder.build()).build();
 
         try (Response response = client.newCall(request).execute()) {
-            Gson gson = new Gson();
-            String responseString = response.body().string();
-            NewsResponse newsResponse = gson.fromJson(responseString, NewsResponse.class);
+            String responseString = response.body().string();             //body zu string
+            NewsResponse newsResponse = new Gson().fromJson(responseString, NewsResponse.class);         //gson parsed den response string
             return newsResponse;
         } catch (Exception e) {
             System.out.println("Something went wrong!");
             return null;
         }
     }
+
+
     // https://square.github.io/okhttp/3.x/okhttp/okhttp3/HttpUrl.Builder.html || last visit 28.04.2022
     public NewsResponse getTopHeadlines(String country, Category category, Country choice) {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
@@ -57,6 +62,13 @@ public class NewsApi {
 
         urlBuilder.addQueryParameter("category", category.toString());
         urlBuilder.addQueryParameter("country", choice.toString());
+
+        return request(urlBuilder);
+    }
+    public NewsResponse getAllNews() {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
+        urlBuilder.addPathSegment("everything");
+        urlBuilder.addQueryParameter("q", "*");
 
         return request(urlBuilder);
     }
