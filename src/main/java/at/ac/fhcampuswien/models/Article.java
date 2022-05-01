@@ -69,7 +69,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "\n{Article {" +
                 "\nauthor: '" + author + '\'' + ","+
                 "\ntitle: '" + title + '\'' + ","+
                 "\ndescription: '" + description + '\'' + ","+
@@ -78,6 +78,7 @@ public class Article {
                 "\npublished at: '" + publishedAt + '\'' + ","+
                 "\ncontent: '" + content + '\'' +
                 '}';
+
     }
 }
 
