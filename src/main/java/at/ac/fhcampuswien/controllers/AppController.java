@@ -69,11 +69,12 @@ public class AppController {
     }
 
 
+    /*
     /**
      * method to generate a mocking list of articles
      * @return list of generated articles
-     */
-    /*
+
+
     private static List<Article> generateMockList(){
         List<Article> articles = new ArrayList<>();
 
@@ -95,7 +96,6 @@ public class AppController {
      * @param query to filter by
      * @param articles  list to filter
      * @return filtered list
-
 
     protected static List<Article> filterList(String query, List<Article> articles){
         if(query != null && articles != null) {
