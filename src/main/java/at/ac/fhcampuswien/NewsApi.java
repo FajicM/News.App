@@ -39,14 +39,17 @@ public class NewsApi {
 
     // https://www.tabnine.com/code/query/okhttp3@HttpUrl$Builder+okhttp3@Request$Builder+okhttp3@Call || last visit: 28.04.2022
     // https://codedaily.in/okhttp-tutorial-example/ || last visit: 29.04.2022
+    // apiKey wird noch der URL von TopHeadlines oder AllNews angehängt, mit der URL wird ein request gemacht
+    // der request wird vom body zu string gemacht,
+    // anschließend parsed gson den response string und die daten werden in NewsResponse gespeichert
     private NewsResponse request(HttpUrl.Builder urlBuilder) {
         urlBuilder.addQueryParameter("apiKey", apiKey);
 
         Request request = new Request.Builder().url(urlBuilder.build()).build();
 
         try (Response response = client.newCall(request).execute()) {
-            String responseString = response.body().string();             //body zu string
-            NewsResponse newsResponse = new Gson().fromJson(responseString, NewsResponse.class);         //gson parsed den response string
+            String responseString = response.body().string();
+            NewsResponse newsResponse = new Gson().fromJson(responseString, NewsResponse.class);
             return newsResponse;
         } catch (Exception e) {
             System.out.println("Something went wrong!");
@@ -56,6 +59,7 @@ public class NewsApi {
 
 
     // https://square.github.io/okhttp/3.x/okhttp/okhttp3/HttpUrl.Builder.html || last visit 28.04.2022
+    // URL wird "gebaut" und die Strings angehängt -> Zeile 43
     public NewsResponse getTopHeadlines(String country, Category category, Country choice) {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
         urlBuilder.addEncodedPathSegment("top-headlines");
@@ -65,6 +69,8 @@ public class NewsApi {
 
         return request(urlBuilder);
     }
+
+    // Methode um articleCount zu kriegen, "*" steht für alle results
     public NewsResponse getTotalNews() {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
         urlBuilder.addPathSegment("everything");

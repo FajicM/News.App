@@ -40,9 +40,9 @@ public class AppController {
      * @return article list
      */
 
-    // GetTopHeadlines Methode aus NewsApi wird gerufen wo die URL gebaut wird.
+    // GetTopHeadlines Methode aus NewsApi wird gerufen wo die URL "gebaut" wird. (Mit enums dann auf Österreich und deutsch spezialisiert)
     // Es wird überprüft ob es zu einer Antwort von NewsResponse kommt, wenn
-    // nicht wird eine leere Liste zurückgeliefert, wenn schon werden die Artikel zurpckgegeben.
+    // nicht wird eine leere Liste zurückgeliefert, wenn schon werden die Artikel zurückgegeben.
     public List<Article> getTopHeadlinesAustria() {
         NewsResponse newsResponse = NewsApi.getInstance().getTopHeadlines("AT", NewsApi.Category.general, NewsApi.Country.at);
 
