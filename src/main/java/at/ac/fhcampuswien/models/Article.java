@@ -70,13 +70,13 @@ public class Article {
     @Override
     public String toString() {
         return "Article{" +
-                ", author='" + author + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                ", urlToImage='" + urlToImage + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                ", content='" + content + '\'' +
+                "\nauthor: '" + author + '\'' + ","+
+                "\ntitle: '" + title + '\'' + ","+
+                "\ndescription: '" + description + '\'' + ","+
+                "\nurl: '" + url + '\'' + ","+
+                "\nurlToImage: '" + urlToImage + '\'' + ","+
+                "\npublished at: '" + publishedAt + '\'' + ","+
+                "\ncontent: '" + content + '\'' +
                 '}';
     }
 }
