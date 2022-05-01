@@ -31,7 +31,7 @@ public class AppController {
      * @return size of article list
      */
     public int getArticleCount(){
-        return NewsApi.getInstance().getAllNews().getTotalResults();
+        return NewsApi.getInstance().getTotalNews().getTotalResults();
     }
 
     /**

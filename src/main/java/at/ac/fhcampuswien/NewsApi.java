@@ -65,7 +65,7 @@ public class NewsApi {
 
         return request(urlBuilder);
     }
-    public NewsResponse getAllNews() {
+    public NewsResponse getTotalNews() {
         HttpUrl.Builder urlBuilder = HttpUrl.parse(url).newBuilder();
         urlBuilder.addPathSegment("everything");
         urlBuilder.addQueryParameter("q", "*");
